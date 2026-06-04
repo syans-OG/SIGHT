@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGHT | Modern Posters & T-Shirts</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Syne:wght@600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- GSAP & Lenis for smooth animations -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.34/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <!-- Dynamic Island Navigation -->
+    <nav class="dynamic-nav" id="mainNav">
+        <div class="nav-header">
+            <!-- Left: Hamburger Menu (2 lines) -->
+            <button class="menu-btn" id="menuBtn" aria-label="Toggle Menu">
+                <span class="line"></span>
+                <span class="line"></span>
+            </button>
+
+            <!-- Center: Logo -->
+            <a href="index.html" class="logo" id="logo">SIGHT</a>
+
+            <!-- Right: Icons -->
+            <div class="nav-actions">
+                <button class="action-btn" id="searchBtn" aria-label="Search">
+                    <i data-lucide="search"></i>
+                </button>
+                <button class="action-btn" id="cartBtn" aria-label="Cart" style="position: relative;">
+                    <!-- Tote Bag SVG -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                        class="lucide lucide-shopping-bag">
+                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+                        <path d="M3 6h18" />
+                        <path d="M16 10a4 4 0 0 1-8 0" />
+                    </svg>
+                    <span class="cart-badge" id="cartBadge" style="display: none;">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Expanded Content Area -->
+        <div class="nav-content" id="navContent">
+            <!-- Menu View -->
+            <div class="nav-view active" id="menuView">
+                <ul class="nav-links">
+                    <li><a href="catalog-poster.html">Posters</a></li>
+                    <li><a href="#">T-Shirts</a></li>
+                    <li><a href="#">About Us</a></li>
+                </ul>
+                <div class="nav-footer">
+                    <a href="#">Instagram</a>
+                    <a href="#">TikTok</a>
+                    <a href="#">Pinterest</a>
+                </div>
+            </div>
+
+            <!-- Search View -->
+            <div class="nav-view" id="searchView">
+                <div class="search-bar">
+                    <i data-lucide="search"></i>
+                    <input type="text" placeholder="Search for posters or t-shirts...">
+                </div>
+                <div class="search-recommendations">
+                    <p class="rec-title">Best Seller</p>
+                    <div class="rec-grid">
+                        <div class="rec-item">
+                            <div class="rec-img-wrapper type-poster">
+                                <img src="asset/POSTER/POSTER1.jpg" alt="Neymar Jr. Brazil" class="rec-img">
+                            </div>
+                            <p>Neymar Jr. Brazil</p>
+                            <span class="rec-price">$14.90</span>
+                        </div>
+                        <div class="rec-item">
+                            <div class="rec-img-wrapper type-tshirt">
+                                <img src="asset/KAOS/KAOS1.png" alt="Wemby San Antonio Tee" class="rec-img">
+                            </div>
+                            <p>Wemby San Antonio Tee</p>
+                            <span class="rec-price">$24.90</span>
+                        </div>
+                        <div class="rec-item">
+                            <div class="rec-img-wrapper type-tshirt">
+                                <img src="asset/KAOS/KAOS3.png" alt="LeBron King James Tee" class="rec-img">
+                            </div>
+                            <p>LeBron King James Tee</p>
+                            <span class="rec-price">$26.90</span>
+                        </div>
+                        <div class="rec-item">
+                            <div class="rec-img-wrapper type-poster">
+                                <img src="asset/POSTER/POSTER3.jpg" alt="Cristiano Ronaldo Portugal" class="rec-img">
+                            </div>
+                            <p>Cristiano Ronaldo Portugal</p>
+                            <span class="rec-price">$15.90</span>
+                        </div>
+                        <div class="rec-item">
+                            <div class="rec-img-wrapper type-poster">
+                                <img src="asset/POSTER/POSTER4.jpg" alt="Team USA Basketball" class="rec-img">
+                            </div>
+                            <p>Team USA Basketball</p>
+                            <span class="rec-price">$16.90</span>
+                        </div>
+                        <div class="rec-item">
+                            <div class="rec-img-wrapper type-tshirt">
+                                <img src="asset/KAOS/KAOS4.png" alt="Wemby Midnight Tee" class="rec-img">
+                            </div>
+                            <p>Wemby Midnight Tee</p>
+                            <span class="rec-price">$27.90</span>
+                        </div>
+                        <div class="rec-item">
+                            <div class="rec-img-wrapper type-poster">
+                                <img src="asset/POSTER/POSTER5.jpg" alt="Giannis Antetokounmpo" class="rec-img">
+                            </div>
+                            <p>Giannis Antetokounmpo</p>
+                            <span class="rec-price">$15.90</span>
+                        </div>
+                        <div class="rec-item">
+                            <div class="rec-img-wrapper type-tshirt">
+                                <img src="asset/KAOS/KAOS2.png" alt="Anthony Edwards Tee" class="rec-img">
+                            </div>
+                            <p>Anthony Edwards Tee</p>
+                            <span class="rec-price">$25.90</span>
+                        </div>
+                        <div class="rec-item">
+                            <div class="rec-img-wrapper type-poster">
+                                <img src="asset/POSTER/POSTER2.jpg" alt="Erling Haaland City" class="rec-img">
+                            </div>
+                            <p>Erling Haaland City</p>
+                            <span class="rec-price">$12.90</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Side Cart (Drawer) -->
+    <div class="cart-drawer" id="cartDrawer">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button id="closeCartBtn"><i data-lucide="x"></i></button>
+        </div>
+        <div class="cart-body">
+            <p class="empty-cart">Your tote bag is empty.</p>
+        </div>
+        <div class="cart-footer">
+            <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Main Content -->
+    <main class="site-main">
+        <div id="homeView" class="view-section active">
+        <div class="page-container">
+            <!-- Hero Section -->
+        <section class="hero" id="hero">
+            <div class="carousel-container" id="heroCarousel">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Slide 1: Creative Split -->
+                    <div class="carousel-slide creative-slide">
+                        <div class="slide-text-layer">
+                            <h1 class="huge-text">SPACE<br><span>& FORM</span></h1>
+                            <p class="slide-desc">Curated posters to elevate your interior aesthetics.<br>Discover our
+                                exclusive gallery.</p>
+                            <a href="#" class="btn-creative btn-solid">Shop Posters <i
+                                    data-lucide="arrow-up-right"></i></a>
+                        </div>
+                        <div class="slide-img-layer">
+                            <img src="asset/MOCKUP/Poster_Mockup1.jpg" alt="Poster Mockup in Interior"
+                                class="slide-img">
+                        </div>
+                    </div>
+
+                    <!-- Slide 2: Full Image with Creative Overlay -->
+                    <div class="carousel-slide full-creative-slide">
+                        <img src="asset/MOCKUP/Poster_Mockup2.jpg" alt="Full Poster Display" class="slide-img">
+                        <div class="slide-overlay-gradient"></div>
+                        <div class="slide-text-layer center-layer">
+                            <h2 class="huge-text light-text">VISUAL<br><span>SYMPHONY</span></h2>
+                            <p class="slide-desc light-desc">Experience comfort merged with striking visual arts.</p>
+                            <a href="#" class="btn-creative light-btn">Explore Collection <i
+                                    data-lucide="arrow-up-right"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3: Creative Split Reversed -->
+                    <div class="carousel-slide creative-slide reversed">
+                        <div class="slide-text-layer">
+                            <h2 class="huge-text">WEARABLE<br><span>ART</span></h2>
+                            <p class="slide-desc">Premium cotton t-shirts featuring our signature designs.<br>Limited
+                                edition drops.</p>
+                            <a href="#" class="btn-creative btn-solid">Shop T-Shirts <i
+                                    data-lucide="arrow-up-right"></i></a>
+                        </div>
+                        <div class="slide-img-layer">
+                            <img src="asset/MOCKUP/Tshirt_Mockup1.jpg" alt="T-Shirt Mockup" class="slide-img">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Giant Visible Controls -->
+                <div class="carousel-nav-box">
+                    <button class="nav-btn" id="prevSlide" aria-label="Previous Slide">
+                        <i data-lucide="chevron-left"></i>
+                    </button>
+                    <div class="nav-dots" id="carouselIndicators">
+                        <div class="dot active" data-index="0"></div>
+                        <div class="dot" data-index="1"></div>
+                        <div class="dot" data-index="2"></div>
+                    </div>
+                    <button class="nav-btn" id="nextSlide" aria-label="Next Slide">
+                        <i data-lucide="chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Product Catalog Section -->
+        <section class="catalog-section" id="catalog">
+            <div class="catalog-header">
+                <h2>Catalog Poster</h2>
+                <div class="header-actions">
+                    <span class="scroll-instruction"><i data-lucide="mouse-pointer-2"></i> Hover to explore</span>
+                    <a href="#" class="view-all-link" onclick="event.preventDefault(); window.navigateTo('catalog', null, false, true, 'poster')">See all <i data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="poster-stack-container" id="posterStack">
+                <div class="poster-stack-track">
+                    
+                    <!-- Poster 1 -->
+                    <div class="poster-card" data-id="1" data-name="Abstract Chalkboard" data-price="14.90" data-img="asset/POSTER/POSTER1.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER1.jpg" alt="Abstract Chalkboard" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Abstract Chalkboard</p>
+                            <div class="poster-details-price">
+                                <span class="price">$14.90</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Poster 2 -->
+                    <div class="poster-card" data-id="2" data-name="Citrus Melody" data-price="12.90" data-img="asset/POSTER/POSTER2.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER2.jpg" alt="Citrus Melody" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Citrus Melody</p>
+                            <div class="poster-details-price">
+                                <span class="price">$12.90</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Poster 3 -->
+                    <div class="poster-card" data-id="3" data-name="Retro Speedster" data-price="15.90" data-img="asset/POSTER/POSTER3.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER3.jpg" alt="Retro Speedster" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Retro Speedster</p>
+                            <div class="poster-details-price">
+                                <span class="price">$15.90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster 4 -->
+                    <div class="poster-card" data-id="4" data-name="Disco FM" data-price="12.90" data-img="asset/POSTER/POSTER4.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER4.jpg" alt="Disco FM" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Disco FM</p>
+                            <div class="poster-details-price">
+                                <span class="price">$12.90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster 5 -->
+                    <div class="poster-card" data-id="5" data-name="Nostalgia" data-price="12.90" data-img="asset/POSTER/POSTER5.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER5.jpg" alt="Nostalgia" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Nostalgia</p>
+                            <div class="poster-details-price">
+                                <span class="price">$12.90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster 6 -->
+                    <div class="poster-card" data-id="6" data-name="Sunflower Garden" data-price="13.90" data-img="asset/POSTER/POSTER6.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER6.jpg" alt="Sunflower Garden" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Sunflower Garden</p>
+                            <div class="poster-details-price">
+                                <span class="price">$13.90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster 7 -->
+                    <div class="poster-card" data-id="7" data-name="Huku Waves" data-price="14.90" data-img="asset/POSTER/POSTER7.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER7.jpg" alt="Huku Waves" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Huku Waves</p>
+                            <div class="poster-details-price">
+                                <span class="price">$14.90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster 8 -->
+                    <div class="poster-card" data-id="8" data-name="Electric Jellyfish" data-price="13.90" data-img="asset/POSTER/POSTER8.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER8.jpg" alt="Electric Jellyfish" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Electric Jellyfish</p>
+                            <div class="poster-details-price">
+                                <span class="price">$13.90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster 9 -->
+                    <div class="poster-card" data-id="9" data-name="Tomato Garden" data-price="12.90" data-img="asset/POSTER/POSTER9.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER9.jpg" alt="Tomato Garden" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Tomato Garden</p>
+                            <div class="poster-details-price">
+                                <span class="price">$12.90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster 10 -->
+                    <div class="poster-card" data-id="10" data-name="Super M1" data-price="15.90" data-img="asset/POSTER/POSTER10.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER10.jpg" alt="Super M1" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Super M1</p>
+                            <div class="poster-details-price">
+                                <span class="price">$15.90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster 11 -->
+                    <div class="poster-card" data-id="11" data-name="Nishikigoi Blue" data-price="14.90" data-img="asset/POSTER/POSTER11.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER11.jpg" alt="Nishikigoi Blue" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Nishikigoi Blue</p>
+                            <div class="poster-details-price">
+                                <span class="price">$14.90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Poster 12 -->
+                    <div class="poster-card" data-id="12" data-name="Tiger Selection" data-price="16.90" data-img="asset/POSTER/POSTER12.jpg">
+                        <div class="poster-frame">
+                            <img src="asset/POSTER/POSTER12.jpg" alt="Tiger Selection" class="poster-image" loading="lazy">
+                        </div>
+                        <div class="poster-details">
+                            <p class="poster-details-title">Tiger Selection</p>
+                            <div class="poster-details-price">
+                                <span class="price">$16.90</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Product Catalog Section - T-Shirts -->
+        <section class="catalog-section" id="catalog-tshirts">
+            <div class="catalog-header">
+                <h2>Catalog T-Shirt</h2>
+                <div class="header-actions">
+                    <span class="scroll-instruction"><i data-lucide="mouse-pointer-2"></i> Hover to explore</span>
+                    <a href="#" class="view-all-link" onclick="event.preventDefault(); window.navigateTo('catalog', null, false, true, 'tshirt')">See all <i data-lucide="arrow-right"></i></a>
+                </div>
+            </div>
+            
+            <div class="poster-stack-container" id="tshirtStack">
+                <div class="poster-stack-track">
+                    
+                    <!-- T-Shirt 1 -->
+                    <div class="tshirt-card" data-id="t1" data-name="T-Shirt Design 1" data-price="24.90" data-img="asset/KAOS/KAOS1.png">
+                        <div class="tshirt-frame">
+                            <img src="asset/KAOS/KAOS1.png" alt="T-Shirt Design 1" class="tshirt-image" loading="lazy">
+                        </div>
+                        <div class="tshirt-details">
+                            <p class="tshirt-details-title">T-Shirt Design 1</p>
+                            <div class="tshirt-details-price">
+                                <span class="price">$24.90</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- T-Shirt 2 -->
+                    <div class="tshirt-card" data-id="t2" data-name="T-Shirt Design 2" data-price="24.90" data-img="asset/KAOS/KAOS2.png">
+                        <div class="tshirt-frame">
+                            <img src="asset/KAOS/KAOS2.png" alt="T-Shirt Design 2" class="tshirt-image" loading="lazy">
+                        </div>
+                        <div class="tshirt-details">
+                            <p class="tshirt-details-title">T-Shirt Design 2</p>
+                            <div class="tshirt-details-price">
+                                <span class="price">$24.90</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- T-Shirt 3 -->
+                    <div class="tshirt-card" data-id="t3" data-name="T-Shirt Design 3" data-price="24.90" data-img="asset/KAOS/KAOS3.png">
+                        <div class="tshirt-frame">
+                            <img src="asset/KAOS/KAOS3.png" alt="T-Shirt Design 3" class="tshirt-image" loading="lazy">
+                        </div>
+                        <div class="tshirt-details">
+                            <p class="tshirt-details-title">T-Shirt Design 3</p>
+                            <div class="tshirt-details-price">
+                                <span class="price">$24.90</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- T-Shirt 4 -->
+                    <div class="tshirt-card" data-id="t4" data-name="T-Shirt Design 4" data-price="24.90" data-img="asset/KAOS/KAOS4.png">
+                        <div class="tshirt-frame">
+                            <img src="asset/KAOS/KAOS4.png" alt="T-Shirt Design 4" class="tshirt-image" loading="lazy">
+                        </div>
+                        <div class="tshirt-details">
+                            <p class="tshirt-details-title">T-Shirt Design 4</p>
+                            <div class="tshirt-details-price">
+                                <span class="price">$24.90</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- T-Shirt 5 -->
+                    <div class="tshirt-card" data-id="t5" data-name="T-Shirt Design 5" data-price="24.90" data-img="asset/KAOS/KAOS5.png">
+                        <div class="tshirt-frame">
+                            <img src="asset/KAOS/KAOS5.png" alt="T-Shirt Design 5" class="tshirt-image" loading="lazy">
+                        </div>
+                        <div class="tshirt-details">
+                            <p class="tshirt-details-title">T-Shirt Design 5</p>
+                            <div class="tshirt-details-price">
+                                <span class="price">$24.90</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- T-Shirt 6 -->
+                    <div class="tshirt-card" data-id="t6" data-name="T-Shirt Design 6" data-price="24.90" data-img="asset/KAOS/KAOS6.png">
+                        <div class="tshirt-frame">
+                            <img src="asset/KAOS/KAOS6.png" alt="T-Shirt Design 6" class="tshirt-image" loading="lazy">
+                        </div>
+                        <div class="tshirt-details">
+                            <p class="tshirt-details-title">T-Shirt Design 6</p>
+                            <div class="tshirt-details-price">
+                                <span class="price">$24.90</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- T-Shirt 7 -->
+                    <div class="tshirt-card" data-id="t7" data-name="T-Shirt Design 7" data-price="24.90" data-img="asset/KAOS/KAOS7.png">
+                        <div class="tshirt-frame">
+                            <img src="asset/KAOS/KAOS7.png" alt="T-Shirt Design 7" class="tshirt-image" loading="lazy">
+                        </div>
+                        <div class="tshirt-details">
+                            <p class="tshirt-details-title">T-Shirt Design 7</p>
+                            <div class="tshirt-details-price">
+                                <span class="price">$24.90</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- T-Shirt 8 -->
+                    <div class="tshirt-card" data-id="t8" data-name="Electric Jellyfish Tee" data-price="24.90" data-img="asset/KAOS/KAOS8.png">
+                        <div class="tshirt-frame">
+                            <img src="asset/KAOS/KAOS8.png" alt="Electric Jellyfish Tee" class="tshirt-image" loading="lazy">
+                        </div>
+                        <div class="tshirt-details">
+                            <p class="tshirt-details-title">Electric Jellyfish Tee</p>
+                            <div class="tshirt-details-price">
+                                <span class="price">$24.90</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Manifesto Section -->
+        <section class="manifesto-section" id="manifesto">
+            <div class="manifesto-container">
+                <h2 class="manifesto-text">
+                    Art isn't just seen, <br><span class="highlight">it's worn.</span><br>
+                    <span class="manifesto-sub">SIGHT bridges the gap between your walls and your wardrobe.</span>
+                </h2>
+            </div>
+        </section>
+        
+        </div> <!-- End of page-container 1 -->
+
+        <!-- Infinite Marquee Section -->
+        <section class="marquee-section">
+            <div class="marquee-container">
+                <div class="marquee-track">
+                    <span class="marquee-item">WEARABLE ART •</span>
+                    <span class="marquee-item">PREMIUM QUALITY •</span>
+                    <span class="marquee-item">LIMITED EDITION •</span>
+                    <span class="marquee-item">CURATED DESIGNS •</span>
+                    <span class="marquee-item">WEARABLE ART •</span>
+                    <span class="marquee-item">PREMIUM QUALITY •</span>
+                    <span class="marquee-item">LIMITED EDITION •</span>
+                    <span class="marquee-item">CURATED DESIGNS •</span>
+                </div>
+            </div>
+        </section>
+
+        <div class="page-container" style="padding-top: 0;">
+        <!-- Editorial Lookbook Section -->
+        <section class="lookbook-section" id="lookbook">
+            <div class="lookbook-header">
+                <h2>The Archive</h2>
+                <p>A glimpse into how our community styles SIGHT.</p>
+            </div>
+            <div class="lookbook-grid">
+                <div class="lookbook-item item-1">
+                    <img src="asset/MOCKUP/Tshirt_Mockup2.jpg" alt="Lookbook Image 1" loading="lazy" decoding="async">
+                    <div class="lookbook-text">
+                        <h3>Urban Utility</h3>
+                        <p>Function meets form in our latest street-ready essentials.</p>
+                        <a href="#" class="btn-creative">View Gallery <i data-lucide="arrow-up-right"></i></a>
+                    </div>
+                </div>
+                <div class="lookbook-item item-2">
+                    <img src="asset/MOCKUP/Poster_Mockup3.jpg" alt="Lookbook Image 2" loading="lazy" decoding="async">
+                    <div class="lookbook-text">
+                        <h3>Art in Motion</h3>
+                        <p>Dynamic posters designed to elevate any space.</p>
+                        <a href="#" class="btn-creative">View Gallery <i data-lucide="arrow-up-right"></i></a>
+                    </div>
+                </div>
+                <div class="lookbook-item item-3">
+                    <img src="asset/MOCKUP/Poster_Mockup4.jpg" alt="Lookbook Image 3" loading="lazy" decoding="async">
+                    <div class="lookbook-text">
+                        <h3>Curated Spaces</h3>
+                        <p>Transform your walls into a personal gallery of modern aesthetics.</p>
+                        <a href="#" class="btn-creative">View Gallery <i data-lucide="arrow-up-right"></i></a>
+                    </div>
+                </div>
+                <div class="lookbook-item item-4">
+                    <img src="asset/MOCKUP/Poster_Mockup5.jpg" alt="Lookbook Image 4" loading="lazy" decoding="async">
+                    <div class="lookbook-text">
+                        <h3>Minimalist Form</h3>
+                        <p>Focusing on the beauty of simplicity and clean lines.</p>
+                        <a href="#" class="btn-creative">View Gallery <i data-lucide="arrow-up-right"></i></a>
+                    </div>
+                </div>
+                <div class="lookbook-item item-5">
+                    <img src="asset/MOCKUP/Tshirt_Mockup3.jpg" alt="Lookbook Image 5" loading="lazy" decoding="async">
+                    <div class="lookbook-text">
+                        <h3>Signature Wear</h3>
+                        <p>Wearable art designed for comfort and everyday expression.</p>
+                        <a href="#" class="btn-creative">View Gallery <i data-lucide="arrow-up-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+        </div> <!-- End homeView -->
+
+        <!-- Catalog & Detail Views (SPA) -->
+        <div id="catalogContainer" style="display: none;">
+            <div class="page-container" style="padding-top: 120px; padding-bottom: 160px;">
+                <!-- Catalog View -->
+                <div id="catalogView">
+                    <div class="catalog-header-wrapper">
+                        <div class="catalog-header-title-section">
+                            <h1 class="catalog-title">ALL POSTERS</h1>
+                            <div class="catalog-subtitle-row">
+                                <p class="catalog-subtitle">Transform your walls into a personal gallery.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="catalog-header-filter-section">
+                            <div class="catalog-filters">
+                                <span class="filter-label">Sort by</span>
+                                <div class="catalog-tab-menu" id="catalogFilter">
+                                    <div class="catalog-tab-indicator"></div>
+                                    <button class="catalog-tab-btn active" data-value="newest">Newest</button>
+                                    <button class="catalog-tab-btn" data-value="best-seller">Best Seller</button>
+                                    <button class="catalog-tab-btn" data-value="az">A-Z</button>
+                                    <button class="catalog-tab-btn" data-value="za">Z-A</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="catalog-grid" id="posterGrid">
+                        <!-- Posters will be dynamically inserted here via JS -->
+                    </div>
+                </div>
+
+                <!-- Product Detail View (Full Page inline) -->
+                <div id="productDetailView" class="product-detail-view" style="display: none; opacity: 0; transform: translateY(20px);">
+                    <!-- Back Button -->
+                    <button class="back-to-catalog" id="backToCatalogBtn" aria-label="Back to Catalog">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="19" y1="12" x2="5" y2="12"></line>
+                            <polyline points="12 19 5 12 12 5"></polyline>
+                        </svg>
+                        <span>Back</span>
+                    </button>
+                    
+                    <div class="product-detail-content">
+                        <!-- Left Column: Large Image Showcase -->
+                        <div class="product-detail-image-col">
+                            <div class="product-detail-image-wrapper">
+                                <img src="" alt="" id="detailProductImage" class="product-detail-image">
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column: Product Info & Customization -->
+                        <div class="product-detail-info-col">
+                            <div class="product-detail-breadcrumbs">
+                                <span class="breadcrumb-item" id="breadcrumbHome">Home</span>
+                                <span class="breadcrumb-separator">/</span>
+                                <span class="breadcrumb-item" id="breadcrumbCatalog">Catalog</span>
+                                <span class="breadcrumb-separator">/</span>
+                                <span class="breadcrumb-item active" id="breadcrumbProduct">Product</span>
+                            </div>
+                            
+                            <h2 class="product-detail-title" id="detailProductTitle"></h2>
+                            <div class="product-detail-price" id="detailProductPrice"></div>
+                            
+                            <p class="product-detail-desc" id="detailProductDesc"></p>
+                            
+                            <div class="product-detail-divider"></div>
+                            
+                            <!-- Sizes Selection -->
+                            <div class="product-detail-section">
+                                <div class="section-header">
+                                    <span class="section-title">Select Size</span>
+                                    <span class="section-value-hint" id="detailSizeValueHint">A3 (29.7 x 42 cm)</span>
+                                </div>
+                                <div class="product-size-grid">
+                                    <button class="size-btn active" data-size="A3" data-price-offset="0">
+                                        <span class="size-name">A3</span>
+                                        <span class="size-dimensions">29.7 x 42 cm</span>
+                                    </button>
+                                    <button class="size-btn" data-size="A2" data-price-offset="5">
+                                        <span class="size-name">A2</span>
+                                        <span class="size-dimensions">42 x 59.4 cm</span>
+                                        <span class="size-upcharge">+$5.00</span>
+                                    </button>
+                                    <button class="size-btn" data-size="A1" data-price-offset="10">
+                                        <span class="size-name">A1</span>
+                                        <span class="size-dimensions">59.4 x 84.1 cm</span>
+                                        <span class="size-upcharge">+$10.00</span>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="product-detail-divider"></div>
+                            
+                            <!-- Details Spec Sheet -->
+                            <div class="product-spec-list">
+                                <div class="spec-row">
+                                    <span class="spec-label">Paper Weight</span>
+                                    <span class="spec-value">250 gsm (Fine Art Archival)</span>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-label">Finish</span>
+                                    <span class="spec-value">Matte Premium Smooth</span>
+                                </div>
+                                <div class="spec-row">
+                                    <span class="spec-label">Frame</span>
+                                    <span class="spec-value">Frame not included</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Action CTA -->
+                            <div class="product-detail-cta-row">
+                                <button class="product-detail-add-btn" id="detailAddToCartBtn">
+                                    <span>Add to Tote</span>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        <polyline points="12 5 19 12 12 19"></polyline>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Checkout View (SPA) -->
+        <div id="checkoutView" style="display:none;">
+            <div class="checkout-page">
+                <!-- Step 1: Shipping Form -->
+                <div class="checkout-step" id="checkoutStep1">
+                    <div class="checkout-layout">
+                        <!-- Left: Form -->
+                        <div class="checkout-form-col">
+                            <button class="back-to-catalog" id="cancelCheckoutBtn" style="margin-bottom: 24px; display: flex; align-items: center; gap: 8px; background: none; border: none; cursor: pointer; font-family: var(--font-body); font-weight: 500; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 0.05em; color: var(--color-graphite); opacity: 0.7; transition: opacity 0.3s ease; padding: 0;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                                    <polyline points="12 19 5 12 12 5"></polyline>
+                                </svg>
+                                <span>Back to Shop</span>
+                            </button>
+                            <div class="checkout-breadcrumb">
+                                <span class="co-breadcrumb-item active">01 Shipping</span>
+                                <span class="co-breadcrumb-sep">—</span>
+                                <span class="co-breadcrumb-item">02 Review</span>
+                                <span class="co-breadcrumb-sep">—</span>
+                                <span class="co-breadcrumb-item">03 Confirm</span>
+                            </div>
+                        <h1 class="checkout-title">Shipping Info</h1>
+                        <form class="checkout-form" id="shippingForm" novalidate>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="firstName">First Name</label>
+                                    <input class="form-input" type="text" id="firstName" placeholder="John" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="lastName">Last Name</label>
+                                    <input class="form-input" type="text" id="lastName" placeholder="Doe" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email Address</label>
+                                <input class="form-input" type="email" id="email" placeholder="john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Phone Number</label>
+                                <input class="form-input" type="tel" id="phone" placeholder="+62 812 3456 7890">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="address">Street Address</label>
+                                <input class="form-input" type="text" id="address" placeholder="Jl. Sudirman No. 1" required>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label class="form-label" for="city">City</label>
+                                    <input class="form-input" type="text" id="city" placeholder="Jakarta" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label" for="postalCode">Postal Code</label>
+                                    <input class="form-input" type="text" id="postalCode" placeholder="12345" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="country">Country</label>
+                                <select class="form-input form-select" id="country" required>
+                                    <option value="">Select Country</option>
+                                    <option value="ID">Indonesia</option>
+                                    <option value="SG">Singapore</option>
+                                    <option value="MY">Malaysia</option>
+                                    <option value="US">United States</option>
+                                    <option value="GB">United Kingdom</option>
+                                    <option value="AU">Australia</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Shipping Method</label>
+                                <div class="shipping-options">
+                                    <label class="shipping-option">
+                                        <input type="radio" name="shipping" value="standard" checked>
+                                        <div class="shipping-option-content">
+                                            <span class="shipping-name">Standard</span>
+                                            <span class="shipping-eta">5–7 business days</span>
+                                        </div>
+                                        <span class="shipping-price">$4.90</span>
+                                    </label>
+                                    <label class="shipping-option">
+                                        <input type="radio" name="shipping" value="express">
+                                        <div class="shipping-option-content">
+                                            <span class="shipping-name">Express</span>
+                                            <span class="shipping-eta">2–3 business days</span>
+                                        </div>
+                                        <span class="shipping-price">$12.90</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" class="checkout-next-btn">Review Order <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+                        </form>
+                    </div>
+                    <!-- Right: Order Summary -->
+                    <div class="checkout-summary-col">
+                        <div class="checkout-summary-box">
+                            <h3 class="summary-title">Order Summary</h3>
+                            <div class="summary-items" id="checkoutSummaryItems1"></div>
+                            <div class="summary-totals" id="checkoutTotals1"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2: Review -->
+            <div class="checkout-step" id="checkoutStep2" style="display:none;">
+                <div class="checkout-layout">
+                    <div class="checkout-form-col">
+                        <div class="checkout-breadcrumb">
+                            <span class="co-breadcrumb-item">01 Shipping</span>
+                            <span class="co-breadcrumb-sep">—</span>
+                            <span class="co-breadcrumb-item active">02 Review</span>
+                            <span class="co-breadcrumb-sep">—</span>
+                            <span class="co-breadcrumb-item">03 Confirm</span>
+                        </div>
+                        <h1 class="checkout-title">Review Order</h1>
+                        <div class="review-shipping-card" id="reviewShippingCard"></div>
+                        <div class="review-items-list" id="reviewItemsList"></div>
+                        <div class="review-actions">
+                            <button class="checkout-back-btn" id="backToStep1Btn">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Edit Info
+                            </button>
+                            <button class="checkout-next-btn" id="placeOrderBtn">Place Order <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+                        </div>
+                    </div>
+                    <div class="checkout-summary-col">
+                        <div class="checkout-summary-box">
+                            <h3 class="summary-title">Order Summary</h3>
+                            <div class="summary-items" id="checkoutSummaryItems2"></div>
+                            <div class="summary-totals" id="checkoutTotals2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3: Success -->
+            <div class="checkout-step" id="checkoutStep3" style="display:none;">
+                <div class="checkout-success-screen">
+                    <div class="success-icon-wrapper">
+                        <svg class="success-checkmark" viewBox="0 0 52 52">
+                            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                        </svg>
+                    </div>
+                    <p class="success-tagline">Order Confirmed</p>
+                    <h2 class="success-title">Thank you for your order!</h2>
+                    <p class="success-desc">A confirmation has been sent to your email. We'll notify you once your order ships.</p>
+                    <div class="success-order-id">Order #<span id="successOrderId"></span></div>
+                    <button class="success-continue-btn" id="successContinueBtn">Continue Shopping</button>
+                </div>
+            </div>
+
+        </div>
+        <!-- end checkout-page -->
+
+        </div>
+        <!-- end #checkoutView -->
+
+    </main>
+
+    <!-- Curtain Footer -->
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-top">
+                <div class="footer-newsletter">
+                    <h3 class="footer-title">Join The Club</h3>
+                    <p class="footer-desc">Exclusive drops, early access, and stories from the studio.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit" aria-label="Subscribe">
+                            <i data-lucide="arrow-right"></i>
+                        </button>
+                    </form>
+                </div>
+                <div class="footer-links-wrapper">
+                    <div class="footer-col">
+                        <h4>Shop</h4>
+                        <a href="#">Posters</a>
+                        <a href="#">T-Shirts</a>
+                        <a href="#">Collections</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Brand</h4>
+                        <a href="#">About Us</a>
+                        <a href="#">Manifesto</a>
+                        <a href="#">Journal</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Help</h4>
+                        <a href="#">FAQ</a>
+                        <a href="#">Shipping</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="footer-logo">SIGHT</div>
+                <div class="footer-legal">
+                    <span>&copy; 2026 SIGHT Studios. All rights reserved.</span>
+                    <div class="legal-links">
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+        <!-- Scripts -->
+        <script src="js/data.js"></script>
+        <script src="js/script.js"></script>
+</body>
+
+</html>
