@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SIGHT | Modern Posters & T-Shirts</title>
+    <link rel="icon" type="image/png" href="asset/favicon.png">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +27,15 @@
 </head>
 
 <body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <h1 class="preloader-logo">SIGHT</h1>
+            <div class="preloader-progress">
+                <div class="preloader-bar"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- Dynamic Island Navigation -->
     <nav class="dynamic-nav" id="mainNav">
@@ -37,7 +47,7 @@
             </button>
 
             <!-- Center: Logo -->
-            <a href="index.html" class="logo" id="logo">SIGHT</a>
+            <a href="#" class="logo" id="logo">SIGHT</a>
 
             <!-- Right: Icons -->
             <div class="nav-actions">
@@ -63,9 +73,9 @@
             <!-- Menu View -->
             <div class="nav-view active" id="menuView">
                 <ul class="nav-links">
-                    <li><a href="catalog-poster.html">Posters</a></li>
-                    <li><a href="#">T-Shirts</a></li>
-                    <li><a href="#">About Us</a></li>
+                    <li><a href="#" id="navPosters">Posters</a></li>
+                    <li><a href="#" id="navTshirts">T-Shirts</a></li>
+                    <li><a href="#" id="navAboutUs">About Us</a></li>
                 </ul>
                 <div class="nav-footer">
                     <a href="#">Instagram</a>

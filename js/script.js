@@ -1,3 +1,32 @@
+// Preloader Logic
+function hidePreloader() {
+    const preloader = document.getElementById('preloader');
+    const preloaderBar = document.querySelector('.preloader-bar');
+    if (!preloader || !preloaderBar) return;
+
+    preloaderBar.style.animation = 'none';
+    if (typeof gsap !== 'undefined') {
+        gsap.to(preloaderBar, { width: '100%', duration: 0.5, ease: 'power2.out', onComplete: () => {
+            gsap.to(preloader, { yPercent: -100, duration: 1, ease: 'power4.inOut', delay: 0.3, onComplete: () => {
+                preloader.style.display = 'none';
+            }});
+        }});
+    } else {
+        preloader.style.display = 'none';
+    }
+}
+
+Promise.all([
+    new Promise(resolve => {
+        if (document.readyState === 'complete') {
+            resolve();
+        } else {
+            window.addEventListener('load', resolve);
+        }
+    }),
+    document.fonts.ready
+]).then(hidePreloader);
+
 document.addEventListener('DOMContentLoaded', () => {
     // Register GSAP Plugins
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
@@ -102,12 +131,60 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Click Logo -> Scroll to top and close nav
+    // Click Logo -> Home or Scroll Top
     logo.addEventListener('click', (e) => {
         e.preventDefault();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
         closeNav();
+        if (typeof currentSPAView !== 'undefined' && currentSPAView === 'home') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else if (typeof window.navigateTo === 'function') {
+            window.homeScrollY = 0; // Reset scroll when navigating via Nav
+            window.navigateTo('home');
+            setTimeout(() => window.scrollTo(0, 0), 10);
+        }
     });
+
+    const navPosters = document.getElementById('navPosters');
+    if (navPosters) {
+        navPosters.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeNav();
+            if (typeof currentSPAView !== 'undefined' && currentSPAView === 'catalog' && window.currentCatalogType === 'poster') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (typeof window.navigateTo === 'function') {
+                window.catalogScrollY = 0; // Reset scroll
+                window.navigateTo('catalog', null, false, true, 'poster');
+                setTimeout(() => window.scrollTo(0, 0), 10);
+            }
+        });
+    }
+
+    const navTshirts = document.getElementById('navTshirts');
+    if (navTshirts) {
+        navTshirts.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeNav();
+            if (typeof currentSPAView !== 'undefined' && currentSPAView === 'catalog' && window.currentCatalogType === 'tshirt') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (typeof window.navigateTo === 'function') {
+                window.catalogScrollY = 0; // Reset scroll
+                window.navigateTo('catalog', null, false, true, 'tshirt');
+                setTimeout(() => window.scrollTo(0, 0), 10);
+            }
+        });
+    }
+
+    const navAboutUs = document.getElementById('navAboutUs');
+    if (navAboutUs) {
+        navAboutUs.addEventListener('click', (e) => {
+            e.preventDefault();
+            closeNav();
+            // Scroll to the bottom to see footer
+            setTimeout(() => {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }, 100);
+        });
+    }
 
     // Click outside Nav to close it
     document.addEventListener('click', (e) => {
@@ -910,8 +987,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     currentSPAView = 'home';
     previousSPAView = 'home';
-    let homeScrollY = 0;
-    let catalogScrollY = 0;
+    window.homeScrollY = 0;
+    window.catalogScrollY = 0;
     let currentDetailProduct = null;
     let selectedSize = 'A3';
     let selectedSizePrice = 0;
@@ -919,13 +996,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.navigateTo = function(targetView, productId = null, instant = false, pushHistory = true, catalogType = null) {
         if (!homeView || !catalogContainer || !catalogView || !productDetailView) return;
-        if (targetView === currentSPAView && !productId) return; // Prevent double-clicking unless changing product
+        
+        if (targetView === currentSPAView && !productId) {
+            // Allow changing categories while already in Catalog View
+            if (targetView === 'catalog' && catalogType && catalogType !== window.currentCatalogType) {
+                window.currentCatalogType = catalogType;
+                if (typeof window.updateCatalogUI === 'function') {
+                    window.updateCatalogUI();
+                }
+            }
+            return; // Prevent full transition animation
+        }
 
         previousSPAView = currentSPAView;
         
         // Save scroll position for returning later
-        if (currentSPAView === 'home') homeScrollY = window.scrollY;
-        else if (currentSPAView === 'catalog') catalogScrollY = window.scrollY;
+        if (currentSPAView === 'home') window.homeScrollY = window.scrollY;
+        else if (currentSPAView === 'catalog') window.catalogScrollY = window.scrollY;
 
         if (catalogType) {
             window.currentCatalogType = catalogType;
@@ -1090,12 +1177,12 @@ document.addEventListener('DOMContentLoaded', () => {
             if (targetView === 'home') {
                 homeView.style.display = 'block';
                 fadeInTarget = homeView;
-                targetScroll = homeScrollY;
+                targetScroll = window.homeScrollY;
             } else if (targetView === 'catalog') {
                 catalogContainer.style.display = 'block';
                 catalogView.style.display = 'block';
                 fadeInTarget = catalogView;
-                targetScroll = catalogScrollY;
+                targetScroll = window.catalogScrollY;
                 
                 if (typeof window.updateCatalogUI === 'function') {
                     window.updateCatalogUI();

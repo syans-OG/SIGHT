@@ -3152,3 +3152,61 @@ body {
     .review-actions .checkout-next-btn { width: 100%; }
 }
 
+/* =========================================
+   PRELOADER
+   ========================================= */
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--color-deep-emerald);
+    z-index: 999999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.preloader-content {
+    text-align: center;
+    color: var(--color-surface-white);
+}
+
+.preloader-logo {
+    font-family: var(--font-heading);
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeUpPreloader 0.8s ease forwards;
+}
+
+.preloader-progress {
+    width: 240px;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 auto;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.preloader-bar {
+    width: 0%;
+    height: 100%;
+    background-color: var(--color-surface-white);
+    animation: preloaderProgress 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes fadeUpPreloader {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes preloaderProgress {
+    0% { width: 0%; }
+    100% { width: 85%; }
+}
